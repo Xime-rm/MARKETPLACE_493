@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", () => {
         .querySelector("h3")
         .textContent.replace("Categoría: ", ""),
       price: modal.querySelector("h4").textContent.replace("Precio: $", ""),
-      deleted: false, // Añadir esta propiedad para marcar el estado eliminado
+      deleted: false,
     };
 
     if (isProductInCart(productInfo)) {
@@ -41,10 +41,17 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   const btnMarket = document.querySelector(".btn-market");
-  btnMarket.addEventListener("click", () => {
-    const containerShop = document.querySelector(".containerShop");
+btnMarket.addEventListener("click", () => {
+  const containerShop = document.querySelector(".containerShop");
+  if (cartProducts.length === 0) {
+    Swal.fire({
+      icon: "info",
+      title: "Aún no has añadido productos al carrito de compras",
+    });
+  } else {
     containerShop.classList.toggle("show");
-  });
+  }
+});
 
   const closeMarketBtn = document.querySelector(".close-market");
   closeMarketBtn.addEventListener("click", () => {
@@ -138,25 +145,62 @@ window.addEventListener("DOMContentLoaded", () => {
     price.textContent = `Precio: $${productInfo.price}`;
     price.classList.add("cart-price");
 
+    const quantityLabel = document.createElement("label");
+    quantityLabel.textContent = "Cantidad:";
+
+    const quantityContainer = document.createElement("div");
+    quantityContainer.classList.add("quantity-container");
+
+    const decreaseButton = document.createElement("button");
+    decreaseButton.textContent = "-";
+    decreaseButton.classList.add("quantity-button");
+    decreaseButton.style.marginRight = "0.5rem";
+
+    decreaseButton.addEventListener("click", () => {
+      let currentQuantity = parseInt(quantityDisplay.textContent);
+      if (currentQuantity > 1) {
+        currentQuantity--;
+        quantityDisplay.textContent = currentQuantity;
+      }
+    });
+
+    const quantityDisplay = document.createElement("span");
+    quantityDisplay.textContent = "1";
+    quantityDisplay.classList.add("quantity-display");
+
+    const increaseButton = document.createElement("button");
+    increaseButton.textContent = "+";
+    increaseButton.classList.add("quantity-button");
+    increaseButton.style.marginLeft = "0.5rem";
+    increaseButton.addEventListener("click", () => {
+      let currentQuantity = parseInt(quantityDisplay.textContent);
+      currentQuantity++;
+      quantityDisplay.textContent = currentQuantity;
+    });
+
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Eliminar";
     deleteButton.classList.add("delete-button");
     deleteButton.addEventListener("click", () => {
-      // Eliminar la carta cuando se hace clic en el botón de eliminar
       containerShop.removeChild(cart);
-      removeProductFromCart(productInfo.title); // Actualizar el array de productos en el carrito
+      removeProductFromCart(productInfo.title);
     });
+
+    quantityContainer.appendChild(decreaseButton);
+    quantityContainer.appendChild(quantityDisplay);
+    quantityContainer.appendChild(increaseButton);
 
     cartContent.appendChild(img);
     cartContent.appendChild(title);
     cartContent.appendChild(price);
+    cartContent.appendChild(quantityLabel);
+    cartContent.appendChild(quantityContainer);
     cartContent.appendChild(deleteButton);
 
     cart.appendChild(cartContent);
 
     containerShop.appendChild(cart);
   }
-
   function removeProductFromCart(productTitle) {
     cartProducts = cartProducts.filter(
       (product) => product.title !== productTitle

@@ -22,7 +22,9 @@
   }
 
   .logo > img {
-    width: 5rem;
+    width: 5.5rem;
+    border-radius: 1rem;
+    border: 2px solid white;
   }
 
   .tools {
@@ -32,7 +34,7 @@
   }
 
   .tools > img {
-    width: 2.7rem;
+    width: 2.3rem;
   }
 
   .title {
@@ -46,7 +48,9 @@
 
   .title > h1 {
     font-size: 45px;
-    color: #f16d1c;
+    color: #ffffff;
+    padding: 1rem;
+    border-radius: 3rem;
   }
 
   .categories {
@@ -62,7 +66,9 @@
     border-radius: 0.5rem;
     padding: 0.5rem;
     border: 0px solid;
-    color: #f16d1c;
+    background-color: black;
+    color: white;
+    border: 2px solid #1bd5db;
   }
 
   .carts {
@@ -82,9 +88,10 @@
 
   .cart {
     width: 9rem;
-    height: 21rem;
-    background-color: #469cda;
-    border: 4px solid #f16d1c;
+    height: 23rem;
+    background-color: black;
+    color: white;
+    border: 4px solid #ffffff;
     border-radius: 1rem;
     margin: 0.5rem;
   }
@@ -180,11 +187,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow-y: auto; /* Habilita el desplazamiento vertical */
+    overflow-y: auto;
   }
 
   .containerShop-title {
-    color: #f16d1c;
+    color: #000000;
     font-weight: bold;
     font-size: 17px;
   }
@@ -197,45 +204,49 @@
   }
 
   .cart-img {
-    width: 100px; /* Ajusta el tamaño de la imagen según sea necesario */
+    width: 100px;
     height: auto;
   }
 
   .cart-info {
     margin-left: 10px;
-    background-color: red; /* Ajusta el espacio entre la imagen y el texto */
+    background-color: red;
   }
 
   .cart-title {
-    font-size: 16px; /* Ajusta el tamaño del título */
+    font-size: 16px;
   }
 
   .cart-description {
-    font-size: 12px; /* Ajusta el tamaño de la descripción */
+    font-size: 12px;
   }
 
   .cart-category,
   .cart-price {
-    font-size: 14px; /* Ajusta el tamaño de la categoría y el precio */
+    font-size: 14px;
   }
 
   .delete-button {
-    background-color: #ff6347; /* Color de fondo del botón */
-    color: #fff; /* Color del texto */
-    border: none; /* Eliminar borde */
-    padding: 8px 12px; /* Espacio alrededor del texto */
-    border-radius: 4px; /* Bordes redondeados */
-    cursor: pointer; /* Cursor al pasar por encima */
-    transition: background-color 0.3s; /* Transición suave para cambios de color */
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
   }
 
   .delete-button:hover {
-    background-color: #ff473d; /* Color de fondo del botón cuando se pasa el mouse por encima */
+    background-color: #ff473d;
   }
 
   .btn-market {
     background-color: transparent;
     border: none;
+  }
+
+  .btn-market > img {
+    width: 2.3rem;
   }
 
   .containerShop {
@@ -268,5 +279,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  #searchInput {
+    background-color: black;
+    color: white;
+    border-radius: 1rem;
+    border: 2px solid white;
   }
 }
